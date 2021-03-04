@@ -18,7 +18,7 @@ pub type Result<T> = result::Result<T, Error>;
 /// For example, if a CSV reader is used on an in-memory buffer with the
 /// `flexible` option enabled and one is reading records as raw byte strings,
 /// then no error can occur.
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct Error(Box<ErrorKind>);
 
 impl Error {
@@ -58,7 +58,7 @@ impl Error {
 }
 
 /// The specific type of an error.
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub enum ErrorKind {
     /// An I/O error that occurred while reading CSV data.
     Io(io::Error),
